@@ -17,3 +17,13 @@ const LauchType = new GraphQLObjectType({
     rocket: { type: RocketType },
   }),
 });
+
+// Rocket Type and add fields with graphql types
+const RocketType = new GraphQLObjectType({
+  name: "Rocket",
+  fields: () => ({
+    rocket_id: { type: GraphQLString },
+    rocket_name: { type: GraphQLString },
+    rocket_type: { type: GraphQLString },
+  }),
+});
