@@ -5,7 +5,7 @@ const {
   GraphQLString,
   GraphQLBoolean,
   GraphQLList,
-  GraphQLSchema
+  GraphQLSchema,
 } = require("graphql");
 
 // Launch Type and add fields with graphql types
@@ -42,7 +42,19 @@ const RootQuery = new GraphQLObjectType({
         return res.data;
       },
     },
+    launch: {
+      type: LauchType,
+      args: {
+        flight_number: { type: GraphQLInt },
+      },
+      async resolve(parent, args) {
+        const res = await axios.get(
+          `https://api.spacexdata.com/v3/launches/${args.flight_number}`
+        );
+        return res.data;
+      },
+    },
   },
 });
 
-module.exports = new GraphQLSchema({query: RootQuery})
+module.exports = new GraphQLSchema({ query: RootQuery });
