@@ -1,5 +1,7 @@
 import React from "react";
 import classNames from "classnames";
+import Moment from "react-moment";
+import { Link } from "react-router-dom";
 
 function LaunchItem({
   launch: { flight_number, mission_name, launch_date_local, launch_success },
@@ -19,10 +21,14 @@ function LaunchItem({
               {mission_name}
             </span>
           </h5>
-          <p>Date: {launch_date_local}</p>
+          <p>
+            Date: <Moment format="YYYY-MM-DD HH:MM">{launch_date_local}</Moment>
+          </p>
         </div>
         <div className="col-md-3">
-          <button className="btn btn-secondary">Launch Details</button>
+          <Link className="btn btn-secondary" to={`/launch/${flight_number}`}>
+            Launch Details
+          </Link>
         </div>
       </div>
     </div>
